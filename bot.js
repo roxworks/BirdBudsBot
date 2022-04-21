@@ -120,9 +120,9 @@ try {
             console.log(e?.data?.errors);
         });
     };
-    // setInterval(doTheThingSafely, 1000 * 60);
+    setInterval(doTheThingSafely, 1000 * 60);
     // doTheThingSafely();
-    setWelcomeDM();
+    // setWelcomeDM();
 }
 catch (e) {
     console.log(e);
