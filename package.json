@@ -1,0 +1,21 @@
+{
+  "name": "birdbuds",
+  "version": "1.0.0",
+  "description": "follow back bot",
+  "main": "bot.js",
+  "dependencies": {
+    "@twitter-api-v2/plugin-rate-limit": "^1.1.0",
+    "dotenv": "^16.0.0",
+    "twitter-api-v2": "^1.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC"
+}
