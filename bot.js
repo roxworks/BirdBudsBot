@@ -41,7 +41,8 @@ let setWelcomeDM = async () => {
 };
 
 let doTheThing = async () => {
-    console.log('doing the thing');
+    console.log('------------------------')
+    console.log('Checking again at ' + new Date());
 
     // GOAL: Get bot to follow me when I follow it
     await getId();
@@ -79,7 +80,7 @@ let doTheThing = async () => {
         let followingResponse = await twitterClient.v2.follow(myUserId, userToFollowId);
         //get rate limit
         let rateLimit = await rateLimitPlugin.v2.getRateLimit('users/:id/following');
-        console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remainin + '/' + rateLimit.limit : 'None.'}`);
+        console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remaining + '/' + rateLimit.limit : 'None.'}`);
         console.log(followingResponse);
         if(followingResponse.data.errors) {
             console.log('Error following user');
@@ -96,7 +97,7 @@ let doTheThing = async () => {
         let unfollowingResponse = await twitterClient.v2.unfollow(myUserId, userToUnfollowId);
         //get rate limit
         let rateLimit = await rateLimitPlugin.v2.getRateLimit('users/:id/following');
-        console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remainin + '/' + rateLimit.limit : 'None.'}`);
+        console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remaining + '/' + rateLimit.limit : 'None.'}`);
         console.log(unfollowingResponse);
         if(unfollowingResponse.data.errors) {
             console.log('Error unfollowing user');
