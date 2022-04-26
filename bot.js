@@ -78,6 +78,17 @@ let doTheThing = async () => {
     for (let userToFollowId of newFollowersIDs) {
         console.log(`Following user ${userToFollowId}`);
         let followingResponse = await twitterClient.v2.follow(myUserId, userToFollowId);
+        // send intro DM:
+        await twitterClient.v1.sendDm({
+            event: EDirectMessageEventTypeV1.DirectMessageEvents,
+            recipient_id: userToFollowId,
+            text: 'Thanks for joining BirdBuds! Please complete signup here: https://app.birdbuds.com/sessions/connect',
+            ctas: [{
+                type: 'web_url',
+                url: 'https://app.birdbuds.com/sessions/connect',
+                label: 'Complete Signup',
+            }]
+        });
         //get rate limit
         let rateLimit = await rateLimitPlugin.v2.getRateLimit('users/:id/following');
         console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remaining + '/' + rateLimit.limit : 'None.'}`);
