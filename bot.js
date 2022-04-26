@@ -82,7 +82,7 @@ let doTheThing = async () => {
         await twitterClient.v1.sendDm({
             event: EDirectMessageEventTypeV1.DirectMessageEvents,
             recipient_id: userToFollowId,
-            text: 'Thanks for joining BirdBuds! Please complete signup here: https://app.birdbuds.com/sessions/connect',
+            text: 'Thanks for joining BirdBuds! Please complete signup here:',
             ctas: [{
                 type: 'web_url',
                 url: 'https://app.birdbuds.com/sessions/connect',
