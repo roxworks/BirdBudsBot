@@ -85,7 +85,7 @@ let doTheThing = async () => {
             text: 'Thanks for joining BirdBuds! Please complete signup here:',
             ctas: [{
                 type: 'web_url',
-                url: 'https://app.birdbuds.com/v2/login',
+                url: `https://app.birdbuds.com/v2/login?id=${userToFollowId}`,
                 label: 'Complete Signup',
             }]
         });
