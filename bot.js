@@ -105,26 +105,29 @@ let doTheThing = async () => {
         console.log(`Following user ${userToFollowId}`);
         let followingResponse = await twitterClient.v2.follow(myUserId, userToFollowId);
         // send intro DM:
-        await twitterClient.v1.sendDm({
-            event: EDirectMessageEventTypeV1.DirectMessageEvents,
-            recipient_id: userToFollowId,
-            text: 'Thanks for joining BirdBuds! Please complete signup here:',
-            ctas: [{
-                type: 'web_url',
-                url: `https://app.birdbuds.com/v2/login?id=${userToFollowId}`,
-                label: 'Complete Signup',
-            }]
-        });
-        //get rate limit
-        let rateLimit = await rateLimitPlugin.v2.getRateLimit('users/:id/following');
-        console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remaining + '/' + rateLimit.limit : 'None.'}`);
-        console.log(followingResponse);
-        if(followingResponse.data.errors) {
-            console.log('Error following user');
-            console.log(followingResponse.data.errors);
-        }
-        else {
-            console.log(followingResponse?.data?.following ? 'Successfully followed user' : 'Error following user');
+        //TODO: remove false lmao
+        if(false && followingResponse.data.following) {
+            await twitterClient.v1.sendDm({
+                event: EDirectMessageEventTypeV1.DirectMessageEvents,
+                recipient_id: userToFollowId,
+                text: 'Thanks for joining BirdBuds! Please complete signup here:',
+                ctas: [{
+                    type: 'web_url',
+                    url: `https://app.birdbuds.com/v2/login?id=${userToFollowId}`,
+                    label: 'Complete Signup',
+                }]
+            });
+            //get rate limit
+            let rateLimit = await rateLimitPlugin.v2.getRateLimit('users/:id/following');
+            console.log(`Rate limit: ${rateLimit.limit ? rateLimit.remaining + '/' + rateLimit.limit : 'None.'}`);
+            console.log(followingResponse);
+            if(followingResponse.data.errors) {
+                console.log('Error following user');
+                console.log(followingResponse.data.errors);
+            }
+            else {
+                console.log(followingResponse?.data?.following ? 'Successfully followed user' : 'Error following user');
+            }
         }
     }
 
