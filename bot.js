@@ -103,6 +103,7 @@ let doTheThing = async () => {
     // follow all of them
     for (let userToFollowId of newFollowersIDs) {
         console.log(`Following user ${userToFollowId}`);
+        //TODO: account for private accounts
         let followingResponse = await twitterClient.v2.follow(myUserId, userToFollowId);
         // send intro DM:
         //TODO: remove false lmao
