@@ -106,11 +106,11 @@ let doTheThing = async () => {
         let followingResponse = await twitterClient.v2.follow(myUserId, userToFollowId);
         // send intro DM:
         //TODO: remove false lmao
-        if(false && followingResponse.data.following) {
+        if(followingResponse.data.following) {
             await twitterClient.v1.sendDm({
                 event: EDirectMessageEventTypeV1.DirectMessageEvents,
                 recipient_id: userToFollowId,
-                text: 'Thanks for joining BirdBuds! Please complete signup here:',
+                text: "Thanks for joining BirdBuds! If you''re seeing this for the second time, it means we need you to log back in :) Please complete signup here:",
                 ctas: [{
                     type: 'web_url',
                     url: `https://app.birdbuds.com/v2/login?id=${userToFollowId}`,
