@@ -50,18 +50,46 @@ let doTheThing = async () => {
     // get the list of people following my account
     console.log('Getting list of people following me...');
     let pplFollowingMe = await twitterClient.v2.followers(myUserId, {
-        max_results: 200
+        max_results: 200,
+        asPaginator: true
     });
+
+    
+
+    // paginate through the list of people following me
+    let followingMe = [];
+    // go through itereator
+    for await (const page of pplFollowingMe) {
+        // add each page to the followingMe array
+        followingMe = followingMe.concat(page);
+    }
+
+    pplFollowingMe = {data: followingMe};
 
     console.log('Got list of people following me.');
     console.log(`${pplFollowingMe.data.length} people following me.`);
     console.log('Getting list of people I follow...');
     let pplIFollow = await twitterClient.v2.following(myUserId, {
-        max_results: 200
+        max_results: 200,
+        asPaginator: true
     });
+
+    // paginate through the list of people I follow
+    let iFollow = [];
+    // go through itereator
+    for await (const page of pplIFollow) {
+        // add each page to the followingMe array
+        console.log(page);
+        iFollow = iFollow.concat(page);
+    }
+
+    pplIFollow = {data: iFollow};
+
     console.log('Got list of people I follow.');
     console.log(`${pplIFollow.data.length} people I follow.`);
 
+    console.log(pplIFollow.data);
+    console.log(pplFollowingMe.data);
     let userIDs = pplFollowingMe.data.map(person => person.id);
     let userIDsIFollow = pplIFollow.data.map(person => person.id);
 
@@ -71,8 +99,6 @@ let doTheThing = async () => {
     // find all userIDs I follow that are not following me
     let churnedUsers = userIDsIFollow.filter(id => !userIDs.includes(id));
     console.log('Churned Users: ', churnedUsers);
-
-    
 
     // follow all of them
     for (let userToFollowId of newFollowersIDs) {
@@ -132,8 +158,8 @@ try {
             console.log(e?.data?.errors);
         });
     };
-    setInterval(doTheThingSafely, 1000 * 60);
-    // doTheThingSafely();
+    // setInterval(doTheThingSafely, 1000 * 60);
+    doTheThingSafely();
     // setWelcomeDM();
 }
 catch (e) {
