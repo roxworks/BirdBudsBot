@@ -153,13 +153,17 @@ let doTheThing = async () => {
 try {
     //do the thing every 1 mins
     let doTheThingSafely = () => {
-        doTheThing().catch((e) => {
+        try{
+            doTheThing().catch((e) => {
+                console.log(e);
+                console.log(e?.data?.errors);
+            });
+        } catch (e) {
             console.log(e);
-            console.log(e?.data?.errors);
-        });
+        }
     };
-    // setInterval(doTheThingSafely, 1000 * 60);
-    doTheThingSafely();
+    setInterval(doTheThingSafely, 1000 * 60);
+    // doTheThingSafely();
     // setWelcomeDM();
 }
 catch (e) {
