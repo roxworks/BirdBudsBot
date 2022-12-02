@@ -54,7 +54,7 @@ let doTheThing = async () => {
         asPaginator: true
     });
 
-    
+    const allPplFollowingMe = await pplFollowingMe.fetchLast(400);
 
     // paginate through the list of people following me
     let followingMe = [];
