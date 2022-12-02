@@ -79,7 +79,7 @@ let doTheThing = async () => {
     // go through itereator
     for await (const page of pplIFollow) {
         // add each page to the followingMe array
-        console.log(page);
+        // console.log(page);
         iFollow = iFollow.concat(page);
     }
 
@@ -88,8 +88,8 @@ let doTheThing = async () => {
     console.log('Got list of people I follow.');
     console.log(`${pplIFollow.data.length} people I follow.`);
 
-    console.log(pplIFollow.data);
-    console.log(pplFollowingMe.data);
+    // console.log(pplIFollow.data);
+    // console.log(pplFollowingMe.data);
     let userIDs = pplFollowingMe.data.map(person => person.id);
     let userIDsIFollow = pplIFollow.data.map(person => person.id);
 
