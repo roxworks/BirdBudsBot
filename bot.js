@@ -103,7 +103,7 @@ let doTheThing = async () => {
     // follow all of them
     for (let userToFollowId of newFollowersIDs) {
         console.log(`Following user ${userToFollowId}`);
-        const IGNORED = [1931065754];
+        const IGNORED = ["1931065754"];
         if(IGNORED.includes(userToFollowId)) {
             console.log('Ignoring user');
             continue;
