@@ -103,10 +103,14 @@ let doTheThing = async () => {
     // follow all of them
     for (let userToFollowId of newFollowersIDs) {
         console.log(`Following user ${userToFollowId}`);
+        const IGNORED = [1931065754];
+        if(IGNORED.includes(userToFollowId)) {
+            console.log('Ignoring user');
+            continue;
+        }
         //TODO: account for private accounts
         let followingResponse = await twitterClient.v2.follow(myUserId, userToFollowId);
         // send intro DM:
-        //TODO: remove false lmao
         if(followingResponse.data.following) {
             await twitterClient.v1.sendDm({
                 event: EDirectMessageEventTypeV1.DirectMessageEvents,
