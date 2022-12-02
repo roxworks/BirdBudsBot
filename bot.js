@@ -94,12 +94,12 @@ let doTheThing = async () => {
     let userIDs = pplFollowingMe.data.map(person => person.id);
     let userIDsIFollow = pplIFollow.data.map(person => person.id);
 
-    if(userIDs.length === 200) {
-        console.log('WARNING: 200 users following me. This may not be all of them.');
+    if(userIDs.length === 200 || userIDs.length === 0) {
+        console.log('WARNING: 200 or 0 users following me. This may not be all of them.');
         return;
     }
-    else if (userIDsIFollow.length === 200) {
-        console.log('WARNING: 200 users I follow. This may not be all of them.');
+    else if (userIDsIFollow.length === 200 || userIDsIFollow.length === 0) {
+        console.log('WARNING: 200 or 0 users I follow. This may not be all of them.');
         return;
     }
 
