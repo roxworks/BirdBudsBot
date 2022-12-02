@@ -74,6 +74,7 @@ let doTheThing = async () => {
         asPaginator: true
     });
 
+    const allpplIFollow = await pplIFollow.fetchLast(400);
     // paginate through the list of people I follow
     let iFollow = [];
     // go through itereator
@@ -92,6 +93,15 @@ let doTheThing = async () => {
     // console.log(pplFollowingMe.data);
     let userIDs = pplFollowingMe.data.map(person => person.id);
     let userIDsIFollow = pplIFollow.data.map(person => person.id);
+
+    if(userIDs.length === 200) {
+        console.log('WARNING: 200 users following me. This may not be all of them.');
+        return;
+    }
+    else if (userIDsIFollow.length === 200) {
+        console.log('WARNING: 200 users I follow. This may not be all of them.');
+        return;
+    }
 
     // find all userIDs I don't follow that are following me
     let newFollowersIDs = userIDs.filter(id => !userIDsIFollow.includes(id));
